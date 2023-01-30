@@ -1,0 +1,129 @@
+﻿-- phpMyAdmin SQL Dump
+-- version 4.2.7.1
+-- http://www.phpmyadmin.net
+--
+-- Client :  localhost
+-- Généré le :  2020-05-14 
+-- Version du serveur :  5.6.20-log
+-- Version de PHP :  5.4.31
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Base de données :  `patchito`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `compte`
+--
+CREATE DATABASE patchito;
+USE patchito;
+CREATE TABLE IF NOT EXISTS COMPTE (
+  USERNAME varchar(30) NOT NULL,
+  EMAIL varchar(30) NOT NULL,
+  PASSWORD varchar(30) NOT NULL,
+  PRIMARY KEY (EMAIL)
+)  COLLATE='latin1_swedish_ci'
+ENGINE=INNODB ;
+--
+-- Structure de la table `administrateur`
+--
+CREATE TABLE IF NOT EXISTS ADMINISTRATEUR (
+  USERNAME varchar(30) NOT NULL,
+  PASSWORD varchar(30) NOT NULL,
+  PRIMARY KEY (USERNAME)
+)ENGINE=MyISAM DEFAULT CHARSET=latin1;
+--
+-- Structure de la table `produit`
+--
+CREATE TABLE IF NOT EXISTS PRODUIT (
+  CODE int NOT NULL AUTO_INCREMENT,
+  NAME varchar(26) NOT NULL,
+  modele varchar(26) NOT NULL,
+  PRICE double NOT NULL,
+  DESCRIPTION varchar(200) NOT NULL,
+  TAILLE varchar(200) NULL,
+  QUANTITY int NOT NULL,
+  PRIMARY KEY (CODE)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS PANIER (
+  PANIER_ID   int NOT NULL AUTO_INCREMENT, 
+  CODE varchar(30) NOT NULL,
+  EMAIL varchar(30) NOT NULL,
+  PRIMARY KEY (PANIER_ID),
+  FOREIGN KEY (CODE) REFERENCES produit(CODE),
+  FOREIGN KEY (EMAIL) REFERENCES COMPTE(EMAIL)
+) ENGINE=MyISAM DEFAULT CHARSET=LATIN1;
+
+
+INSERT INTO `compte` (`username`, `email`, `password`) VALUES
+("ahmed514", 'ahmed514@ahmed514.ahmed514',"ahmed514"),
+("farid514", 'farid514@farid514.farid514',"farid514"),
+("hamza514", 'hamza514@hamza514.hamza514',"hamza514");
+--
+-- Contenu de la table `administrateur`
+--
+INSERT INTO `administrateur` (`username`, `password`) VALUES ('admin514@admin514.admin514', 'admin514');
+--
+-- Contenu de la table `PRODUIT`
+--
+
+INSERT INTO produit (`name`,`modele`,`price`,`description`,`taille`,`quantity`) VALUES
+('Shoes',"TN",100.2,"pour homme, respirantes de haute qualité à l'intérieur","8.5-9.5",10),
+('Shoes',"Air force one",110.2,"pour homme, respirantes de haute qualité à l'intérieur","9.5-10.5",10),
+('Shoes',"Jordan 1",120.2,"pour homme, respirantes de haute qualité à l'intérieur","9.5-10.5",10),
+('Shoes',"Adidas zx flux",130.2,"pour homme, respirantes de haute qualité à l'intérieur","8.5-9.5",10),
+('Shoes',"Air max",140.2,"pour homme, respirantes de haute qualité à l'intérieur","10.5-11.5",10),
+('Shoes',"TN",150.2,"pour homme, respirantes de haute qualité à l'intérieur","8.5-9.5",10),
+('Shoes',"Fila",160.2,"pour femme, respirantes de haute qualité à l'intérieur","9.5-10.5",10),
+('Shoes',"Steve maden",170.2,"pour homme, respirantes de haute qualité à l'intérieur","8.5-9.5",10),
+('Shoes',"Plimsoll",180.2,"pour femme, respirantes de haute qualité à l'intérieur","7.5-8.5",10),
+('Bag',"Adidas bag",200.2,"Sac à bandoulière classique et intemporel qui rehausse toutes les tenues.","standard",10),
+('Bag',"Rudsak",300.2,"Sac à bandoulière classique et intemporel qui rehausse toutes les tenues.","standard",10),
+('Bag',"Aldo Legoiri",400.2,"Sac à bandoulière classique et intemporel qui rehausse toutes les tenues.","standard",10),
+('Bag',"Vegan Leather Purse",450.2,"Sac à bandoulière classique et intemporel qui rehausse toutes les tenues.","standard",10),
+('Bag',"Fossil Women's Ryder",160.2,"Sac à bandoulière classique et intemporel qui rehausse toutes les tenues.","standard",10),
+('Bag',"Micheal Michael Kors",230.2,"Sac à bandoulière classique et intemporel qui rehausse toutes les tenues.","standard",10),
+('Bag',"S-ZONE Women Genuine",120.2,"Sac à bandoulière classique et intemporel qui rehausse toutes les tenues.","standard",10),
+('Bag',"Pendleton Dome Bag",350.2,"Sac à bandoulière classique et intemporel qui rehausse toutes les tenues.","standard",10),
+('Bag',"B&E LIFE Stylish",220.2,"Sac à bandoulière classique et intemporel qui rehausse toutes les tenues.","standard",10),
+('Clothes',"Polo ralph lauren",90.2,"Chandail à manches courtes pour homme très élégant.","S-M",10),
+('Clothes',"Calvin Klein",90.2,"Chandail à manches courtes pour homme très élégant.","L",10),
+('Clothes',"Vans hoddie",80.2,"Chandail à manches longues est fait d'un tissu extensible de haute qualité idéal pour les balades.","S-M",10),
+('Clothes',"FOXY SHERPA JACKET",35.2,"Veste pour femme à manches longues .","M",10),
+('Clothes',"Koe Mesh Hoodie",42.2,"Chandail à manches longues est fait d'un tissu extensible de haute qualité idéal pour les balades.","S-M",10),
+('Clothes',"MAX MARA",55.2,"Manteau pour femme légé ideal pour les balades.","S",10),
+('Clothes',"Falun",20.2,"Chandail en douce maille torsadée. Modèle à manches longues avec finition côtelée au niveau du petit col droit, aux poignets et à la base.","M-L",10),
+('Clothes',"Champion 1",35.2,"Chandail à manches longues pour homme très élégant.","S-M",10),
+('Clothes',"Nike 26",40.2,"Chandail à manches courtes pour homme très élégant.","S-M-L",10),
+('Clothes',"cachemire pull",35.2,"Chandail à manches courtes pour homme très élégant.","L",10),
+('Clothes',"Patch Fleece",29.2,"Chandail à manches longues pour homme très élégant.","L",10),
+('Scarf',"Block Fuzzy",15.2,"Foulard à imprimé floral.","standard",10),
+('Scarf',"Moncler",15.2,"Foulard à imprimé floral.","standard",10),
+('Scarf',"Kenzo black",25.2,"Foulard à imprimé floral.","standard",10),
+('Scarf',"Mansur Gavriel",15.2,"Foulard à imprimé floral.","standard",10),
+('Scarf',"Ted Baker",15.2,"Foulard à imprimé floral.","standard",10),
+('Scarf',"Jimmy Choo",35.2,"Foulard à imprimé floral.","standard",10),
+('Scarf',"Banana Republic",20.2,"Foulard à imprimé floral.","standard",10),
+('Scarf',"Ryder",22.2,"Foulard à imprimé floral.","standard",10),
+('Accessory',"Garette",145.2,"Montre pour homme.","standard",10),
+('Accessory',"Carleyle",120.2,"Montre pour femme.","standard",10),
+('Accessory',"Neutra",132.2,"Montre pour femme.","standard",10),
+('Accessory',"New York",42.2,"Casquette New York.","standard",10),
+('Accessory',"under Armor",32.2,"Casquette Under Armour","standard",10),
+('Accessory',"Ferragamo",150.2,"ceinture ferragamo pour homme","standard",10),
+('Accessory',"Officine",100.2,"ceinture pour femme","standard",10),
+('Accessory',"Dita",212.2,"Lunette de soleil","standard",10),
+('Accessory',"Bvlgari",122.2,"Lunette de soleil","standard",10),
+('Accessory',"Infinity",92.2,"Bracelet pour femme","standard",10),
+('Accessory',"Tnennis Deluxe",82.2,"Bracelet pour femme","standard",10);
